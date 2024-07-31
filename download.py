@@ -114,7 +114,7 @@ def download_file(edit):
 		os.makedirs(os.path.dirname(path))
 
 	# Write VERSION file
-	with open(f"./downloads/{edit['name']}/VERSION", "w") as version_file:
+	with open(f"{DOWNLOAD_PATH}/{edit['name']}/VERSION", "w") as version_file:
 		version_file.write(edit["version"])
 	# If file already exists, skip download
 	if os.path.exists(path):
