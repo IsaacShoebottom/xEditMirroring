@@ -2,6 +2,7 @@ version: "3"
 services:
   xedit-mirror:
     image: xedit-mirror
+    container_name: xedit-mirror
     build:
       context: .
       dockerfile: Dockerfile
