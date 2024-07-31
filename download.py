@@ -5,7 +5,26 @@ from urllib.request import Request, urlopen, build_opener
 BASE_URL = "https://api.nexusmods.com"
 API_VERSION = "v1"
 API_URL = f"{BASE_URL}/{API_VERSION}/games"
-from env import API_KEY
+
+# Read in environment variables (takes precedence over .env file)
+API_KEY = os.environ.get("API_KEY")
+if not API_KEY:
+    raise ValueError("API_KEY environment variable must be set")
+CHECK_INTERVAL = os.environ.get("CHECK_INTERVAL")
+if not CHECK_INTERVAL:
+    CHECK_INTERVAL = 60 * 60 * 24  # 24 hours
+DOWNLOAD_PATH = os.environ.get("DOWNLOAD_PATH")
+if not DOWNLOAD_PATH:
+    DOWNLOAD_PATH = "./downloads"
+
+# Read in dot env file
+file = open(".env", "r")
+lines = file.readlines()
+for line in lines:
+	key, value = line.split("=")
+	key = key.strip()
+	if os.environ.get(key) is None:
+		os.environ[key] = value.strip()
 
 # Docs: https://app.swaggerhub.com/apis-docs/NexusMods/nexus-mods_public_api_params_in_form_data/1.0
 
@@ -89,7 +108,7 @@ def download_file(edit):
 
 	# Create directories if they don't exist
 	filename = f"{edit['name']} {edit['version']}.7z"
-	path = f"./downloads/{edit['name']}/{filename}"
+	path = f"{DOWNLOAD_PATH}/{edit['name']}/{filename}"
 	if not os.path.exists(os.path.dirname(path)):
 		os.makedirs(os.path.dirname(path))
 
@@ -104,9 +123,10 @@ def download_file(edit):
 		with open(path, "wb") as file:
 			file.write(response.read())
 
-
-for edit in xEdits:
-	print(f"Downloading {edit}...")
-	download_file(xEdits[edit])
-	# Wait 1 second between downloads, to prevent rate limiting
-	time.sleep(1)
+while True:
+	for edit in xEdits:
+		print(f"Downloading {edit}...")
+		download_file(xEdits[edit])
+		# Wait 1 second between downloads, to prevent rate limiting
+		time.sleep(1)
+	time.sleep(CHECK_INTERVAL)

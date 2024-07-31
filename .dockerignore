@@ -1,0 +1,12 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+downloads/
+*.7z
+VERSION
+*.json
+.git
+.gitignore
+.env.example
+.env
