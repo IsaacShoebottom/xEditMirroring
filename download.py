@@ -27,6 +27,9 @@ if os.path.exists(".env"):
 		if os.environ.get(key) is None:
 			os.environ[key] = value.strip()
 
+# Convert CHECK_INTERVAL to int
+CHECK_INTERVAL = int(CHECK_INTERVAL)
+
 # Docs: https://app.swaggerhub.com/apis-docs/NexusMods/nexus-mods_public_api_params_in_form_data/1.0
 
 xEdits = {
