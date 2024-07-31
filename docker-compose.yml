@@ -5,3 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - DOWNLOAD_PATH=/downloads
+      - CHECK_INTERVAL=86400
+    env_file:
+      - stack.env
+    volumes:
+      - /home/isaac/Media/Host/files/xEditMirror:/downloads
