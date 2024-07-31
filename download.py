@@ -86,10 +86,16 @@ def download_file(edit):
 	opener = build_opener()
 	print("Download link: ", download_link)
 	opener.addheaders = [("apikey", API_KEY), ("User-Agent", "Mozilla/5.0")]
+
+	# Create directories if they don't exist
 	filename = f"{edit['name']} {edit['version']}.7z"
 	path = f"./downloads/{edit['name']}/{filename}"
 	if not os.path.exists(os.path.dirname(path)):
 		os.makedirs(os.path.dirname(path))
+
+	# Write VERSION file
+	with open(f"./downloads/{edit['name']}/VERSION", "w") as version_file:
+		version_file.write(edit["version"])
 	# If file already exists, skip download
 	if os.path.exists(path):
 		print(f"File {filename} already exists, skipping download...")
@@ -97,6 +103,7 @@ def download_file(edit):
 	with opener.open(download_link) as response:
 		with open(path, "wb") as file:
 			file.write(response.read())
+
 
 for edit in xEdits:
 	print(f"Downloading {edit}...")
