@@ -18,13 +18,14 @@ if not DOWNLOAD_PATH:
     DOWNLOAD_PATH = "./downloads"
 
 # Read in dot env file
-file = open(".env", "r")
-lines = file.readlines()
-for line in lines:
-	key, value = line.split("=")
-	key = key.strip()
-	if os.environ.get(key) is None:
-		os.environ[key] = value.strip()
+if os.path.exists(".env"):
+	file = open(".env", "r")
+	lines = file.readlines()
+	for line in lines:
+		key, value = line.split("=")
+		key = key.strip()
+		if os.environ.get(key) is None:
+			os.environ[key] = value.strip()
 
 # Docs: https://app.swaggerhub.com/apis-docs/NexusMods/nexus-mods_public_api_params_in_form_data/1.0
 
