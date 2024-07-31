@@ -1,0 +1,8 @@
+# Ignore downloaded files
+downloads/
+# Fallback in case files are not in the downloads folder
+*.7z
+# Ignore the build folder
+__pycache__/
+# Ignore environment files
+env.py

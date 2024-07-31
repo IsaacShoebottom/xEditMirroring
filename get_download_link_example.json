@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Chicago (Premium)",
+    "short_name": "Chicago",
+    "URI": "Redacted"
+  },
+  {
+    "name": "Nexus Global Content Delivery Network",
+    "short_name": "Nexus CDN",
+    "URI": "Redacted"
+  },
+  {
+    "name": "Amsterdam (Premium)",
+    "short_name": "Amsterdam",
+    "URI": "Redacted"
+  },
+  {
+    "name": "Prague (Premium)",
+    "short_name": "Prague",
+    "URI": "Redacted"
+  },
+  {
+    "name": "Los Angeles (Premium)",
+    "short_name": "Los Angeles",
+    "URI": "Redacted"
+  },
+  {
+    "name": "Miami (Premium)",
+    "short_name": "Miami",
+    "URI": "Redacted"
+  }
+]
